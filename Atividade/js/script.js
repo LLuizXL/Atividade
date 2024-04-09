@@ -125,18 +125,24 @@ const exercicio9 = () => {
 };
 
 const exercicio10 = () => {
-  let numero = document.getElementById("num");
+  let numero = document.getElementById("num").value * 1;
+
   let resp = document.getElementById("resultado");
   let erro = document.getElementById("erro");
   let somador = 0;
-
-  while (numero > somador) {
-    somador++;
-    if (somador >= numero) {
-    }
+  let numVetores = [];
+  numVetores.push(numero);
+  erro.innerHTML = "";
+  resp.innerHTML = "";
+  if (numero <= 0) {
+    errp.innerText = `DIGITE UM NÚMERO VÀLIDO.`;
   }
+  while (numero >= somador) {
+    somador += numero;
+    numVetores.push(numero);
+    resp.innerText = `${somador / numVetores.length}`;
 }; // nao terminei
-
+}
 const exercicio11 = () => {
   let resp = document.getElementById("resposta");
   resp.innerHTML = `<h3>Os múltiplos de 3, de 0 a 100 são:</h3>`;
@@ -161,17 +167,36 @@ const exercicio12 = () => {
   }
 };
 
+ehPrimo = (numero) => {
+  if (numero <= 1) {
+    return false;
+  }
+
+  for (let i = 2; i < Math.sqrt(numero) + 1; i++) {
+    if (numero % i === 0) {
+      return false;
+    }
+  }
+
+  return true;
+};
 const exercicio13 = () => {
-  let numero1 = document.getElementById("num1").value;
-  let numero2 = document.getElementById("num2").value;
+  let numero1 = document.getElementById("num1").value * 1;
+  let numero2 = document.getElementById("num2").value * 1;
   let resp = document.getElementById("resultado");
   let erro = document.getElementById("erro");
+
   erro.innerText = "";
-  for (let n = numero1; n < numero2; n++) {
-    if (numero1 == 0) {
-      console.log(
-        (erro.innerText = `Por favor, insira os números em ordem crescente (<-- = Menor | Maior = -->)`)
-      );
+  resp.innerHTML = "";
+
+  for (let n = numero1 + 1; n < numero2; n++) {
+    if ((numero1 = numero2 || numero1 == 0 || numero2 == 0)) {
+      erro.innerText = `Por favor, insira os números de forma Crescente (<---- Menor ||| Maior ---->)`;
+    } else {
+      let primo = ehPrimo(n);
+      if (primo) {
+        resp.innerHTML += `<h3>#${n}</h3>`;
+      }
     }
   }
 };
@@ -257,11 +282,151 @@ const exercicio17 = () => {
 const exercicio18 = () => {
   let resp = document.getElementById("resultado");
   let erro = document.getElementById("erro");
-  let num1 = document.getElementById("num1").value;
-  let num2 = document.getElementById("num2").value;
-  let num3 = document.getElementById("num3").value;
+  let num1 = document.getElementById("num1").value * 1;
+  let num2 = document.getElementById("num2").value * 1;
+  let num3 = document.getElementById("num3").value * 1;
+  let base = num1 + num2;
+  let altura = num3;
+  resp.innerHTML = `<h3>A área do Trapézio é igual a: </h3> <h4>${
+    (base * altura) / 2
+  }</h4>`;
+};
 
-  resp.innerText = `A área do Trapézio é iguial a: ${
-    (num1 + num2) * num3 / 2
-  }`;
+const exercicio19 = () => {
+  let data = document.getElementById("data").value;
+  let resp = document.getElementById("resultado");
+  let erro = document.getElementById("erro");
+  resp.innerHTML = "";
+  erro.innerHTML = "";
+  let dataAtual = new Date();
+  let dataNasc = new Date(data);
+  let idade = dataAtual.getFullYear() - dataNasc.getFullYear();
+  let mes = dataAtual.getMonth() - dataNasc.getMonth();
+
+  if (mes < 0) {
+    idade--;
+  }
+
+  resp.innerHTML = `Você tem ${idade} anos.`;
+
+  if (!data) {
+    resp.innerHTML = "";
+    erro.innerText = `Por favor, insira uma data válida.`;
+  }
+};
+
+const exercicio20 = () => {
+  let frase = document.getElementById("frase").value;
+  let resp = document.getElementById("resultado");
+  let erro = document.getElementById("erro");
+
+  let palavras = frase.split(" ");
+  let reverso = palavras.reverse().join(" ");
+
+  resp.innerHTML = `<h3>A frase invertida fica:</h3> <h4>${reverso}.</h4>`;
+
+  if (!frase) {
+    resp.innerHTML = "";
+    erro.innerHTML = `A frase não pode estar vazia!`;
+  }
+};
+
+const exercicio21 = () => {
+  let frase = document.getElementById("frase").value;
+  let resp = document.getElementById("resultado");
+  let erro = document.getElementById("erro");
+  let noSpace = frase.replace(/\s/g, "");
+  resp.innerHTML = "";
+  erro.innerHTML = "";
+  resp.innerHTML = `<h3>Frase Original:</h3>
+   <h4>${frase}</h4>
+
+  <h4>Frase sem espaços:</h4> 
+  <h3>${noSpace}</h3>`;
+
+  if (!frase) {
+    resp.innerHTML = "";
+    erro.innerHTML = `A frase não pode estar vazia!`;
+  }
+};
+
+var addNums22 = 0;
+const exercicio22 = () => {
+  let resp = document.getElementById("resultado");
+  let erro = document.getElementById("erro");
+  let num = document.getElementById("num").value * 1;
+  resp.innerText = `Valor total da soma:`;
+  erro.innerHTML = "";
+  if (addNums22 <= 100) {
+    addNums22 += num;
+    resp.innerHTML += `<h3>${addNums22}</h3>`;
+  }
+
+  if (addNums22 > 100) {
+    resp.innerHTML = " ";
+    erro.innerText = `O valor da soma passou de 100.`;
+  }
+};
+
+const exercicio23 = () => {
+  let resp = document.getElementById("resultado");
+  let erro = document.getElementById("erro");
+  let frase = document.getElementById("frase").value;
+  let palavra = document.getElementById("palavra").value;
+  let sepFrases = frase.split(" ");
+  let contador = 0;
+  resp.innerHTML = "";
+  erro.innerText = "";
+  for (let i = 0; i < sepFrases.length; i++) {
+    if (sepFrases[i] == palavra) {
+      contador++;
+    } else if (!frase || sepFrases.length < 2) {
+      erro.innerText = `Digite ao menos 2 palavras em sua frase!`;
+    }
+  }
+  resp.innerHTML = ` <h3>A palavra ${palavra} está incluída</h3>
+   <h4>${contador}</h4> 
+  <h3> vez(es) na frase. </h3>`;
+};
+
+convertTitleCase = (palavra) => {
+  return palavra.charAt(0).toUpperCase() + palavra.slice(1).toLowerCase();
+}; //função para converter palavras pala TitleCase.
+
+const exercicio24 = () => {
+  let frase = document.getElementById("frase").value;
+  let resp = document.getElementById("resultado");
+  let erro = document.getElementById("erro");
+  let palavras = frase.split(" ");
+  erro.innerText = "";
+  resp.innerText = "";
+  let titleCaseWords = palavras.map(convertTitleCase);
+  if (!frase || palavras.length < 2) {
+    erro.innerText = `Digite ao menos 2 palavras em sua frase!`;
+  } else {
+    resp.innerText = `A frase em Title Case ficará assim: ${titleCaseWords.join(
+      " "
+    )}`;
+  }
+};
+
+const exercicio25 = () => {
+  let num1 = document.getElementById("num1").value * 1;
+  let num2 = document.getElementById("num2").value * 1;
+  let num3 = document.getElementById("num3").value * 1;
+
+  let resp = document.getElementById("resultado");
+  let erro = document.getElementById("erro");
+
+  let numVetor = [];
+  resp.innerHTML = " ";
+  erro.innerHTML = " ";
+  if (num1 == 0 || num2 == 0 || num3 == 0) {
+    erro.innerText = `Por favor, insira um número!`;
+  } else {
+    numVetor.push(num1, num2, num3);
+    numVetor.sort((a, b) => a - b);
+
+    resp.innerText = `Apresentação em modo Crescente: ${numVetor}`;
+  }
 };
