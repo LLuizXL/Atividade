@@ -141,8 +141,8 @@ const exercicio10 = () => {
     somador += numero;
     numVetores.push(numero);
     resp.innerText = `${somador / numVetores.length}`;
-}; // nao terminei
-}
+  }
+};
 const exercicio11 = () => {
   let resp = document.getElementById("resposta");
   resp.innerHTML = `<h3>Os múltiplos de 3, de 0 a 100 são:</h3>`;
@@ -190,7 +190,7 @@ const exercicio13 = () => {
   resp.innerHTML = "";
 
   for (let n = numero1 + 1; n < numero2; n++) {
-    if ((numero1 = numero2 || numero1 == 0 || numero2 == 0)) {
+    if ((numero1 == numero2 || numero1 == 0 || numero2 == 0)) {
       erro.innerText = `Por favor, insira os números de forma Crescente (<---- Menor ||| Maior ---->)`;
     } else {
       let primo = ehPrimo(n);
